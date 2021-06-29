@@ -12,7 +12,11 @@ dependencies:
   flutter:
     sdk: flutter
 
-  flutter_inappwebview: ^5.3.2
+  #flutter_inappwebview: ^5.3.2
+  flutter_inappwebview: 
+    git:
+      url: 'git://github.com/mecidr/flutter_inappwebview.git'
+      ref: mecidr-patch-ios14.5
   url_launcher: ^6.0.2
 
 dev_dependencies:
