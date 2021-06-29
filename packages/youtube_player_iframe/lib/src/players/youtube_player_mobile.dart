@@ -48,8 +48,7 @@ class RawYoutubePlayer extends StatefulWidget {
   _MobileYoutubePlayerState createState() => _MobileYoutubePlayerState();
 }
 
-class _MobileYoutubePlayerState extends State<RawYoutubePlayer>
-    with WidgetsBindingObserver {
+class _MobileYoutubePlayerState extends State<RawYoutubePlayer> with WidgetsBindingObserver {
   late final YoutubePlayerController controller;
   late final Completer<InAppWebViewController> _webController;
   PlayerState? _cachedPlayerState;
@@ -74,8 +73,7 @@ class _MobileYoutubePlayerState extends State<RawYoutubePlayer>
   void didChangeAppLifecycleState(AppLifecycleState state) {
     switch (state) {
       case AppLifecycleState.resumed:
-        if (_cachedPlayerState != null &&
-            _cachedPlayerState == PlayerState.playing) {
+        if (_cachedPlayerState != null && _cachedPlayerState == PlayerState.playing) {
           controller.play();
         }
         break;
@@ -96,9 +94,7 @@ class _MobileYoutubePlayerState extends State<RawYoutubePlayer>
       initialData: InAppWebViewInitialData(
         data: player,
         baseUrl: Uri.parse(
-          controller.params.privacyEnhanced
-              ? 'https://www.youtube-nocookie.com'
-              : 'https://www.youtube.com',
+          controller.params.privacyEnhanced ? 'https://www.youtube-nocookie.com' : 'https://www.youtube.com',
         ),
         encoding: 'utf-8',
         mimeType: 'text/html',
@@ -143,7 +139,8 @@ class _MobileYoutubePlayerState extends State<RawYoutubePlayer>
             controller.load(uri.queryParameters['v']!);
           }
         } else {
-          url_launcher.launch(uri.toString());
+          //url_launcher.launch(uri.toString());
+          return ShouldOverrideUrlLoadingAction.ALLOW;
         }
         return NavigationActionPolicy.CANCEL;
       },
@@ -271,8 +268,7 @@ class _MobileYoutubePlayerState extends State<RawYoutubePlayer>
         handlerName: 'VideoData',
         callback: (args) {
           controller.add(
-            controller.value
-                .copyWith(metaData: YoutubeMetaData.fromRawData(args.first)),
+            controller.value.copyWith(metaData: YoutubeMetaData.fromRawData(args.first)),
           );
         },
       )
