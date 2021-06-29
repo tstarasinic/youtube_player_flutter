@@ -140,7 +140,7 @@ class _MobileYoutubePlayerState extends State<RawYoutubePlayer> with WidgetsBind
           }
         } else {
           //url_launcher.launch(uri.toString());
-          return ShouldOverrideUrlLoadingAction.ALLOW;
+          return NavigationActionPolicy.ALLOW;
         }
         return NavigationActionPolicy.CANCEL;
       },
