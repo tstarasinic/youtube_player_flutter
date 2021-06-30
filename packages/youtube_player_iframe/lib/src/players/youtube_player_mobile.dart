@@ -133,16 +133,14 @@ class _MobileYoutubePlayerState extends State<RawYoutubePlayer> with WidgetsBind
       shouldOverrideUrlLoading: (_, detail) async {
         final uri = detail.request.url;
         if (uri == null) return NavigationActionPolicy.CANCEL;
-
         final feature = uri.queryParameters['feature'];
-        if (feature == 'emb_rel_pause') {
+        if (feature == null && !uri.query.contains("channel") && !uri.pathSegments.contains("channel") && !uri.queryParameters.containsKey('v')) {
+          return NavigationActionPolicy.ALLOW;
+        } else if (feature == 'emb_rel_pause') {
           if (uri.queryParameters.containsKey('v')) {
             controller.load(uri.queryParameters['v']!);
           }
         } else {
-          /*if (Platform.isIOS) {
-            return NavigationActionPolicy.ALLOW;
-          }*/
           url_launcher.launch(uri.toString());
         }
         return NavigationActionPolicy.CANCEL;
