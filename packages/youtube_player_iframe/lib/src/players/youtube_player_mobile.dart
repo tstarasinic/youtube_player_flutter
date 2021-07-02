@@ -109,6 +109,9 @@ class _MobileYoutubePlayerState extends State<RawYoutubePlayer> with WidgetsBind
             Factory<HorizontalDragGestureRecognizer>(
               () => HorizontalDragGestureRecognizer(),
             ),
+            Factory<LongPressGestureRecognizer>(
+              () => LongPressGestureRecognizer(),
+            ),
           },
       initialOptions: InAppWebViewGroupOptions(
         crossPlatform: InAppWebViewOptions(
